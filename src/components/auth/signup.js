@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+
 import service from '../../services/userService';
 import { toast } from 'react-toastify';
 import AuthForm from './authForm';
+
 
 const Signup = () => {
 
@@ -16,16 +17,17 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // const response = await service.registerUser(user);
-            const response = await axios.post('http://localhost:5000/api/users', user)
+            const response = await service.registerUser(user);
             localStorage.setItem(service.tokenKey, response.headers['x-auth-token']);
-            window.location = '/';
+                       window.location = '/';
         }
         catch (ex) {
-             toast.error(ex.message);
+             toast.error('You have already signed up, login please!');
             
+           
+        
         }
-        console.log(user);
+        
     }
     return (
         <>
@@ -40,7 +42,7 @@ const Signup = () => {
             <AuthForm
                 onSubmit={handleSubmit}
                 onChange={handleChange}
-                user={user}
+                data={user}
                 heading='Signup'
                 pass={true}
                 signup={true}

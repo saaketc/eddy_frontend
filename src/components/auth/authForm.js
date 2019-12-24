@@ -18,8 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 //import SignupButton from '../buttons/SignupButton';
-
-const color = '#f6ee55';
+const color = '#047b63';
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -47,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function AuthForm({ onSubmit, onChange, user, heading, pass, signup, label }) {
+function AuthForm({ onSubmit, onChange, data, heading, pass, signup, label }) {
     const classes = useStyles();
 
     return (
@@ -68,11 +67,13 @@ function AuthForm({ onSubmit, onChange, user, heading, pass, signup, label }) {
                 </Typography>
                 <form onSubmit={onSubmit} className={classes.form}>
                     <Grid container spacing={2}>
+                        {signup &&
+                            <>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 autoComplete="fname"
                                 name="firstName"
-                                value={user.firstName}
+                                value={data.firstName}
                                 onChange={onChange}
                                 variant="outlined"
                                 required
@@ -90,11 +91,13 @@ function AuthForm({ onSubmit, onChange, user, heading, pass, signup, label }) {
                                 id="lastName"
                                 label="Last Name"
                                 name="lastName"
-                                value={user.lastName}
+                                value={data.lastName}
                                 onChange={onChange}
                                 autoComplete="lname"
                             />
-                        </Grid>
+                            </Grid>
+                            </>
+                        }
                         {/* <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
@@ -116,7 +119,7 @@ function AuthForm({ onSubmit, onChange, user, heading, pass, signup, label }) {
                                 id="email"
                                 label="Email Address"
                                 name="email"
-                                value={user.email}
+                                value={data.email}
                                 onChange={onChange}
                                 autoComplete="email"
                             />
@@ -128,7 +131,7 @@ function AuthForm({ onSubmit, onChange, user, heading, pass, signup, label }) {
                                 required
                                 fullWidth
                                 name="password"
-                                value={user.password}
+                                value={data.password}
                                 onChange={onChange}
                                 label="Password"
                                 type="password"
@@ -144,15 +147,15 @@ function AuthForm({ onSubmit, onChange, user, heading, pass, signup, label }) {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        color="primary"
+                        
                         className={classes.submit}
-                        style={{ backgroundColor: color, color: 'black' }}
+                        style={{ backgroundColor: color, color: 'white' }}
                     >
                         {label}
                     </Button>
                     {signup && <Grid container justify="flex-end">
                         <Grid item>
-                            <Link to='/login' variant="body2">
+                            <Link to='/auth/login' variant="body2">
                                 Already have an account? Sign in
               </Link>
                         </Grid>

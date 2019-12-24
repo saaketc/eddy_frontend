@@ -2,17 +2,28 @@ import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
 
 import dataServices from '../../services/dataServices';
+import UiCard from './../common/UiCard';
+import UiModal from './../common/UiModal';
+
+import Typography from '@material-ui/core/Typography';
+import  Grid from '@material-ui/core/Grid';
+import  Container from '@material-ui/core/Container';
+
+const style = {
+    backgroundColor: '#047b63',
+    color: 'white'
+}
 
 const ReadQuestion = (props) => {
     const ques = props.location.state;
-
+    const { user } = props;
     const [question, setQuestion] = useState(ques);
     const [answer, setAnswer] = useState('');
 
     useEffect(() => {
         async function fetchQuestion() {
             try {
-                const { data } = await dataServices.fetchOne('questions', ques._id);
+                const { data } = await dataServices.fetchOne('questions', question._id);
                 setQuestion(data);
 
             }
@@ -38,10 +49,11 @@ const ReadQuestion = (props) => {
 
         try {
             ques.answers.unshift(ans);
-            setQuestion(ques);
+           // setQuestion(ques);
 
-            const { data } = await dataServices.postData('questions', ques._id, ans);
-            //setQuestion(data);
+            const { data } = await dataServices.postData({ resource: 'questions', parameter: ques._id, data: ans });
+           setQuestion(data);
+
             toast.success('Answer added');
         }
         catch (e) {
@@ -53,14 +65,7 @@ const ReadQuestion = (props) => {
 
 
     }
-    return (
-        <>
-            <h1>{question.question}</h1>
-
-            <small>Answers {question.answers.length}</small>
-            <br />
-
-            <form onSubmit={handleSubmit}>
+    {/* <form onSubmit={handleSubmit}>
                 <textarea type="text"
                     placeholder="Your answer here..."
                     name='answer'
@@ -68,17 +73,53 @@ const ReadQuestion = (props) => {
                     onChange={handleChange} >
                 </textarea><br />
                 <button>Answer</button>
-            </form>
+            </form> */}
+
+    return (
+        <Container>
+            <br />
+            <br />
+            <Typography gutterBottom variant="h4">
+              {question.question}?
+                </Typography>
+            
+            <Typography gutterBottom variant="subtitle1">
+                {question.author}
+                </Typography>
+            <Typography gutterBottom variant="subtitle1">
+                {question.answers.length} Answers
+                </Typography>
+            <br />
+            <br />
+            <UiModal
+                style={style}
+                heading='Your answer means a lot to the community'
+                button2='Submit'
+                inputLabel='Your answer'
+                inputName='answer'
+                value={answer}
+                onChange={handleChange}
+                onSubmit={handleSubmit} />
+            <br />
+
+           
             {
                 question.answers.map(ans => (
                     <>
-                        <p key={ans._id}>{ans.answer}</p>
-
+                        <Grid container spacing={6}>
+                            <Grid item lg={4}>
+                                <UiCard
+                                data={ans}
+                                property='answer'
+                                content={ans.author}
+                               /> 
+                                </Grid>
+                            </Grid>
                     </>
                 ))
             }
 
-        </>
+        </Container>
     )
 }
 

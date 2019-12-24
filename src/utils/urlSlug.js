@@ -5,3 +5,6 @@ export const slug = (string) => {
         .replace(/-+$/, ' ')
         .replace(/\?+/g, ' ');
 }
+export const removeQuesMark = (string) => {
+    return string.replace(/\?+$/, '');
+}

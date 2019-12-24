@@ -15,6 +15,7 @@ import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import logo from '../../illustrations/logo.png';
+import  './navbar.css';
 const color = '#047b63';
 
 const useStyles = makeStyles(theme => ({
@@ -68,11 +69,16 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  btn: {
+    '&:hover': {
+    backgroundColor: 'white'
+  }
+}
 }));
 
  function Navbar(props) {
   const classes = useStyles();
-const { onSignupClick, onGeneralClick, user } = props;
+const { onAuthClick, onGeneralClick, user } = props;
 
  const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -104,7 +110,18 @@ const { onSignupClick, onGeneralClick, user } = props;
                       
                         <a href='/'>  <img src={logo} /></a>
                       
-                  </Typography>
+          </Typography>
+          {
+            user &&
+            <div>
+              <Button color="inherit"
+                style={{ color: 'black' }}
+                onClick={() => onGeneralClick('practice')}>Learn</Button>
+              <Button color="inherit"
+                style={{ color: 'black' }}
+                onClick={() => onGeneralClick('loopSpace')}>LoopSpace</Button>
+            </div>
+          }
                    <div>
                       <Button color="inherit"
                       style={{ color:'black' }}
@@ -128,16 +145,25 @@ const { onSignupClick, onGeneralClick, user } = props;
                   <>
                   <div>
                       <Button color="inherit"
-                      style={{ color:'black' }}>Login</Button>
+                style={{ color: 'black' }}
+                onClick={() => onAuthClick('login')}
+                className={classes.btn}
+              >Login
+              </Button>
                   </div>
                   <div>
-                      <Button color="inherit"  style={{ color:'black', border:'1px solid black' }}
-                      onClick={onSignupClick}>Get started</Button>
+                      <Button color="inherit"  style={{ color:color, border:`1px solid ${color}` }}
+                onClick={() => onAuthClick('signup')}
+                className={classes.btn}
+              >Get started
+              </Button>
                   </div>
                   </>
                   }
                   { user &&
-                    <div>
+            <div>
+           
+          
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
