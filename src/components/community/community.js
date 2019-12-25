@@ -90,7 +90,7 @@ const Community = (props) => {
         <Container>
             <br/>
             <br />
-            {loading ? <Loader type='spin' height='20%' width='20%' color='#047b63'/> : (
+            {loading ? <Grid align='center' style={{ textAlign:'center' }}><Loader type='spin' height='20%' width='20%' color='#047b63'/></Grid> : (
                 <>
                 <Typography gutterBottom variant="h2">
                     Ask community
