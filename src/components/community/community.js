@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { withRouter } from 'react-router-dom';
-
+import Loader from 'react-loading';
 import dataServices  from '../../services/dataServices';
 import { slug, removeQuesMark } from '../../utils/urlSlug';
 import UiCard from './../common/UiCard';
@@ -10,6 +10,7 @@ import  Grid from '@material-ui/core/Grid';
 import  Typography from '@material-ui/core/Typography';
 import UiModal from './../common/UiModal';
 
+const color = '#047b63';
 const style = {
     backgroundColor: '#047b63',
     color: 'white'
@@ -18,6 +19,7 @@ const Community = (props) => {
     const { user, history } = props;
     const [questions, setQuestion] = useState([]);
     const [userQuestion, setUserQuestion] = useState('');
+    const [loading, setLoading] = useState(true);
     // const [author, setAuthor] = useState('');
 
     useEffect(() => {
@@ -25,6 +27,7 @@ const Community = (props) => {
             try {
                 const { data } = await dataServices.fetchAll(resource);
                 setQuestion(data);
+                setLoading(false);
             }
             catch (ex) {
                 return toast.error(ex.message);
@@ -86,40 +89,45 @@ const Community = (props) => {
     return (
         <Container>
             <br/>
-            <br/>
-            <Typography gutterBottom variant="h2">
-                Ask community
+            <br />
+            {loading ? <Loader type='spin' height='20%' width='20%' color='#047b63'/> : (
+                <>
+                <Typography gutterBottom variant="h2">
+                    Ask community
                 </Typography>
-            <div>
-                <UiModal
-                    style={style}
-                    heading='Ask the community'
-                    button2='Submit'
-                    inputLabel='Your question'
-                    inputName='question'
-                    value={userQuestion}
-                    onChange={handleChange}
-                    onSubmit={handleSubmit}/>
-                <br/>
-                <br/>
+                <div>
+                    <UiModal
+                        style={style}
+                        heading='Ask the community'
+                        button2='Submit'
+                        inputLabel='Your question'
+                        inputName='question'
+                        value={userQuestion}
+                        onChange={handleChange}
+                        onSubmit={handleSubmit} />
+                    <br />
+                    <br />
                 </div>
-            <Grid container spacing={6}>
-            {
-              
-                questions.map(ques => (
-                    <>
-                        <Grid item lg={4} key={ques._id}>
-                        <UiCard
-                                data={ques}
-                                property='question'
-                                content={ques.author}
-                                onClick={handleQuesClick}/> 
-                            </Grid>
+                <Grid container spacing={6}>
+                    {
+
+                        questions.map(ques => (
+                            <>
+                                <Grid item lg={4} key={ques._id}>
+                                    <UiCard
+                                        data={ques}
+                                        property='question'
+                                        content={ques.author}
+                                        onClick={handleQuesClick} />
+                                </Grid>
+                            </>
+                        ))
+
+                    }
+                    </Grid>
                     </>
-                ))
-                   
-                }
-            </Grid>
+            )}
+           
     </Container>
   )
 
