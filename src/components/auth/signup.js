@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import service from '../../services/userService';
 import { toast } from 'react-toastify';
 import AuthForm from './authForm';
+import { slug } from './../../utils/urlSlug';
 
 
-const Signup = () => {
+const Signup = (props) => {
 
     const [user, setUser] = useState({});
+    const question = props.history.location.state;
+  
 
     const handleChange = ({ currentTarget: input }) => {
         const newUser = { ...user };
@@ -19,10 +23,12 @@ const Signup = () => {
         try {
             const response = await service.registerUser(user);
             localStorage.setItem(service.tokenKey, response.headers['x-auth-token']);
-                       window.location = '/';
+            // window.location = question ? `/community/${slug(question.question)}` : '/';
+            question ? props.history.push(`/community/${slug(question.question)}`, question) : window.location = '/'
+
         }
         catch (ex) {
-             toast.error('You have already signed up, login please!');
+             toast.error(ex.message);
             
            
         
@@ -53,4 +59,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default withRouter(Signup)

@@ -12,12 +12,13 @@ import AddIcon from '@material-ui/icons/Add';
 
 
 export default function UiModal(props) {
-    const { style, heading, content, button1, button2, inputLabel, inputName, onSubmit, onChange, value } = props;
+    const { style, heading, content, button1, button2, inputLabel, inputName, onSubmit, onChange, value, user } = props;
 
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-        setOpen(true);
+        
+        !user ? window.location = '/auth/login' : setOpen(true);
     };
 
     const handleClose = () => {

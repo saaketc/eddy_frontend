@@ -8,6 +8,7 @@ import UiModal from './../common/UiModal';
 import Typography from '@material-ui/core/Typography';
 import  Grid from '@material-ui/core/Grid';
 import  Container from '@material-ui/core/Container';
+import  Button from '@material-ui/core/Button';
 
 const style = {
     backgroundColor: '#047b63',
@@ -23,12 +24,16 @@ const ReadQuestion = (props) => {
     useEffect(() => {
         async function fetchQuestion() {
             try {
+                // const title = props.match.params.title;
+                // const { data } = await dataServices.fetchOne('questions', title);
+
                 const { data } = await dataServices.fetchOne('questions', question._id);
                 setQuestion(data);
+                // console.log(title);
 
             }
             catch (e) {
-                toast.error('Something went wrong');
+                toast.error(e.message);
             }
 
         }
@@ -77,8 +82,12 @@ const ReadQuestion = (props) => {
 
     return (
         <Container>
+          
             <br />
             <br />
+            <Button variant="outlined"  onClick={() => window.history.back()}>Back</Button>
+            <br/>
+            <br/>
             <Typography gutterBottom variant="h4">
               {question.question}?
                 </Typography>

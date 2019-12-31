@@ -40,6 +40,9 @@ const Community = (props) => {
 
    // click a ques
     const handleQuesClick = (question) => {
+        if (!user) {
+            return history.push('/auth/signup', question);
+        }
         return history.push(`/community/${slug(question.question)}`, question);
     }
    // handle change of ask question
@@ -54,7 +57,8 @@ const Community = (props) => {
         try {
 
             const QuesData = {
-                question: removeQuesMark(userQuestion),
+               // question: removeQuesMark(userQuestion),
+                question: slug(userQuestion),
                 userId: user._id,
                 answers:[]
             }
@@ -90,21 +94,22 @@ const Community = (props) => {
         <Container>
             <br/>
             <br />
-            {loading ? <Grid align='center' style={{ textAlign:'center' }}><Loader type='spin' height='20%' width='20%' color='#047b63'/></Grid> : (
+            {loading ? <Grid alignItems='center' justify='center'><Loader type='spin' height='20%' width='20%' color='#047b63'/></Grid> : (
                 <>
                 <Typography gutterBottom variant="h2">
-                    Ask community
+                    {user ? 'Ask community' : 'Login to ask the community!'}
                 </Typography>
                 <div>
                     <UiModal
-                        style={style}
-                        heading='Ask the community'
-                        button2='Submit'
-                        inputLabel='Your question'
-                        inputName='question'
-                        value={userQuestion}
-                        onChange={handleChange}
-                        onSubmit={handleSubmit} />
+                            style={style}
+                            heading='Ask the community'
+                            button2='Submit'
+                            inputLabel='Your question'
+                            inputName='question'
+                            value={userQuestion}
+                            onChange={handleChange}
+                            onSubmit={handleSubmit}
+                            user={user}/>
                     <br />
                     <br />
                 </div>

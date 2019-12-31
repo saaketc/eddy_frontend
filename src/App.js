@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './'
+import './index.css';
 
 import Welcome from './components/welcome';
 import Signup from './components/auth/signup';
@@ -17,9 +17,13 @@ import ReadChapter from './components/practice/readChapter';
 import Navbar from './components/navbar/navbar';
 import LoopSpace from './components/loopSpace/loopSpace';
 
+import dataServices from './services/dataServices';
+import { slug } from './utils/urlSlug';
 const App = (props) => {
 
   const [user, setUser] = useState({});
+  const [query, setQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   
   useEffect(() => {
 
@@ -42,13 +46,36 @@ const App = (props) => {
     if (tag === 'loopSpace')
       return props.history.push('/LoopSpace');
   }
+  // for searching in community
+  const handleSearchChange = async ({ currentTarget:input }) => {
+    setQuery(input.value.toLowerCase());
+    if (query !== '') {
+      const { data: results } = await dataServices.fetchOne('search', query, false);
+      setSearchResults(results);
+      
+    }
+    else 
+      setSearchResults([]);
+  }
+
+  // to click search results
+  const onClickSearchItem = (item) => {
+     props.history.push(`/community/${slug(item.question)}`, item);
+    setSearchResults([]);
+  }
+
   return (
     <>
       <ToastContainer />
       < Navbar
         onAuthClick={handleAuthClick}
         onGeneralClick={handleGeneralClick}
-        user={user}/>
+        user={user}
+        value={query}
+        onChange={handleSearchChange}
+        searchResults={searchResults}
+        onClickSearchItem={onClickSearchItem}
+        />
      
         <Switch>
           <Route path='/auth/signup' component={Signup} />

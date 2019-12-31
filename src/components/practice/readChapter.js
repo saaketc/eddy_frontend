@@ -63,6 +63,9 @@ const ReadChapter = (props) => {
     return (
       <Container>
         <br/>
+        <br />
+        <Button variant="outlined" onClick={() => window.history.back()}>Back</Button>
+        <br/>
         <br/>
         <Grid container spacing={6}>
           <Grid item lg={8}>

@@ -23,3 +23,12 @@ code {
 .appColor {
   background-color: #047b63;
 }
+.btn {
+    color: '047b63';
+    border: '1px solid 047b63';
+   
+  }
+.btn:hover{
+   
+      background-color: 'white'
+}

@@ -3,8 +3,12 @@ export const slug = (string) => {
         .replace(/\s+/g, '-')
         .replace(/^-+/, '')
         .replace(/-+$/, ' ')
-        .replace(/\?+/g, ' ');
+        .replace(/\?+/g, ' ')
+        .replace(/!+$/, ' ');
 }
 export const removeQuesMark = (string) => {
-    return string.replace(/\?+$/, '');
+    return string
+        .replace(/\?+$/, '')
+        .replace(/!+$/, '');
+        
 }

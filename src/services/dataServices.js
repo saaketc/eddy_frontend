@@ -18,7 +18,8 @@ const fetchAll = resource => {
 }
     
 
-const fetchOne = (resource, parameter) => {
+const fetchOne = (resource, parameter, useConfig = true) => {
+    const c = useConfig ? config : null;
     return axios.get(`${url}/${resource}/${parameter}`, config);
 }
 

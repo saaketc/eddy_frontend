@@ -7,6 +7,7 @@ import dataServices from '../../services/dataServices';
 import  Container  from '@material-ui/core/Container';
 import  Grid  from '@material-ui/core/Grid';
 import UiCard from './../common/UiCard';
+import Button from '@material-ui/core/Button';
 
 const ReadTopic = (props) => {
      const topicFromLink = props.location.state;
@@ -38,6 +39,9 @@ const ReadTopic = (props) => {
         <Container>
             <br />
             <br />
+            <Button variant="outlined" onClick={() => window.history.back()}>Back</Button>
+            <br/>
+            <br/>
             <Grid container spacing={6}>
             {/* <h1>{topic.title}</h1> */}
             {

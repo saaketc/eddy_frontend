@@ -12,6 +12,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Container from '@material-ui/core/Container';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import logo from '../../illustrations/logo.png';
@@ -46,6 +50,9 @@ const useStyles = makeStyles(theme => ({
       width: 'auto',
     },
   },
+  searchRes: {
+    color: color
+  },
   searchIcon: {
     width: theme.spacing(7),
     height: '100%',
@@ -70,13 +77,22 @@ const useStyles = makeStyles(theme => ({
     },
   },
   btn: {
+    color: color,
+    border: `1px solid ${color}`,
     '&:hover': {
-    backgroundColor: 'white'
+      backgroundColor: 'white'
+    }
+  }, 
+  hover: {
+    '&:hover': {
+      backgroundColor: 'white'
+    }
   }
-}
 }));
 
- function Navbar(props) {
+function Navbar(props) {
+   
+  const { value, onChange, searchResults, onClickSearchItem } = props;
   const classes = useStyles();
 const { onAuthClick, onGeneralClick, user } = props;
 
@@ -116,7 +132,7 @@ const { onAuthClick, onGeneralClick, user } = props;
             <div>
               <Button color="inherit"
                 style={{ color: 'black' }}
-                onClick={() => onGeneralClick('practice')}>Learn</Button>
+                onClick={() => onGeneralClick('practice')}>LearnSpace</Button>
               <Button color="inherit"
                 style={{ color: 'black' }}
                 onClick={() => onGeneralClick('loopSpace')}>LoopSpace</Button>
@@ -126,33 +142,40 @@ const { onAuthClick, onGeneralClick, user } = props;
                       <Button color="inherit"
                       style={{ color:'black' }}
                       onClick={() => onGeneralClick('community')}>Community</Button>
-                  </div>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon style={{ color:'black' }}/>
+          </div>
+          {
+            user && 
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon style={{ color: 'black' }} />
+              </div>
+              <InputBase
+                placeholder="Search community..."
+                style={{ color: 'black' }}
+                name="search"
+                value={value}
+                onChange={onChange}
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
             </div>
-            <InputBase
-                          placeholder="Search topics..."
-                          style={{ color:'black' }}
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-                  </div>
+          }
+          
                   {!user &&
                   <>
                   <div>
                       <Button color="inherit"
                 style={{ color: 'black' }}
                 onClick={() => onAuthClick('login')}
-                className={classes.btn}
+                className={classes.hover}
               >Login
               </Button>
                   </div>
                   <div>
-                      <Button color="inherit"  style={{ color:color, border:`1px solid ${color}` }}
+                      <Button color="inherit" 
                 onClick={() => onAuthClick('signup')}
                 className={classes.btn}
               >Get started
@@ -196,7 +219,19 @@ const { onAuthClick, onGeneralClick, user } = props;
 
                   }
         </Toolbar>
+        <Container maxWidth='lg'>
+          <Grid lg={4} xs={12}>
+            {searchResults.map(result => (
+              <List key={result._id}>
+                <ListItem button>
+                  <ListItemText onClick={() => onClickSearchItem(result)} className={classes.searchRes} primary={result.question} />
+                </ListItem>
+              </List>
+            ))}
+          </Grid>
+        </Container>
       </AppBar>
+     
     </div>
   );
 }
