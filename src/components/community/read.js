@@ -108,7 +108,8 @@ const ReadQuestion = (props) => {
                 inputName='answer'
                 value={answer}
                 onChange={handleChange}
-                onSubmit={handleSubmit} />
+                onSubmit={handleSubmit}
+                user={user}/>
             <br />
 
            

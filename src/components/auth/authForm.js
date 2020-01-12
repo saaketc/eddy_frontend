@@ -153,18 +153,26 @@ function AuthForm({ onSubmit, onChange, data, heading, pass, signup, label }) {
                     >
                         {label}
                     </Button>
-                    {signup && <Grid container justify="flex-end">
+                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link to='/auth/login' variant="body2">
-                                Already have an account? Sign in
+                            {signup &&
+                                <Link to='/auth/login' variant="body2">
+                                    Already have an account? Sign in
               </Link>
+                            }
+                            {!signup &&
+                            
+                                <Link to='/auth/signup' variant="body2">
+                                    Not a member? Sign up
+                             </Link>
+                            }
                         </Grid>
                         <Grid item>
 
-                            <p>By signing up you are agreeing to our terms and privacy.</p>
+                            <p>{signup ? "By signing up you are agreeing to our terms and privacy." : ""}</p>
 
                         </Grid>
-                    </Grid>}
+                    </Grid>
                 </form>
             </div>
 

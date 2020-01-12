@@ -16,9 +16,10 @@ import ReadTopic from './components/practice/readTopic';
 import ReadChapter from './components/practice/readChapter';
 import Navbar from './components/navbar/navbar';
 import LoopSpace from './components/loopSpace/loopSpace';
-
+import Activity from './components/loopSpace/activity';
 import dataServices from './services/dataServices';
 import { slug } from './utils/urlSlug';
+
 const App = (props) => {
 
   const [user, setUser] = useState({});
@@ -85,6 +86,7 @@ const App = (props) => {
           <Route path='/practice/:topic' render={props => <ReadTopic {...props} user={user} />}/>
           <Route path='/community/:title' render={props => <ReadQuestion {...props} user={user} />}/>
           <Route path='/community' render={props => <Community {...props} user={user} />} />
+          <Route path='/LoopSpace/:activity' render={props => <Activity {...props} user={user}/>}/>
           <Route path='/LoopSpace' render={props => <LoopSpace {...props} user={user}/>}/>
           <Route exact path='/' render={props => user ? <Dashboard {...props} user={user} /> : <Welcome/>} />
         </Switch>

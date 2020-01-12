@@ -57,8 +57,8 @@ const Community = (props) => {
         try {
 
             const QuesData = {
-               // question: removeQuesMark(userQuestion),
-                question: slug(userQuestion),
+               question: removeQuesMark(userQuestion),
+                // question: userQuestion,
                 userId: user._id,
                 answers:[]
             }
@@ -97,7 +97,7 @@ const Community = (props) => {
             {loading ? <Grid alignItems='center' justify='center'><Loader type='spin' height='20%' width='20%' color='#047b63'/></Grid> : (
                 <>
                 <Typography gutterBottom variant="h2">
-                    {user ? 'Ask community' : 'Login to ask the community!'}
+                    {user ? 'Ask community' : 'Join the community!'}
                 </Typography>
                 <div>
                     <UiModal
