@@ -97,18 +97,18 @@ const Profile = (props) => {
                 <br/>
             {enrolledCourses.length > 0 ?
              <Typography variant="h4"  align='center'>
-                         Your enrolled courses
+                {`Enrolled courses for your kid, ${updatedUser.firstName}`}
                         </Typography> 
                 :
                 <>
                  <Typography variant="h4"  align='center'>
-                         Your enrolled courses will live here
+                        {`Hey ${updatedUser.firstName}, your enrolled courses will live here`}
                         </Typography> 
                         <br/>
                          <Typography align='center'>
                         <Button variant='outlined' 
                         className={classes.btn}
-                        onClick={()=> history.push('/')}>Get a course</Button>
+                        onClick={()=> history.push('/')}>Suggested courses</Button>
                         </Typography> 
 
                         </>

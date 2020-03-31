@@ -17,7 +17,9 @@ const useStyles = makeStyles(theme => ({
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        paddingBottom: '15px'
+        paddingBottom: '20px',
+        paddingRight: '20px',
+        paddingTop: '20px',
     },
     overlay: {
         position: 'absolute',
@@ -53,7 +55,19 @@ export default function MainFeaturedPost(props) {
         <Paper className={classes.mainFeaturedPost}>
             <div className={classes.overlay} />
             <Typography variant="h4" align='right'>
-                {courseScore > 0 ? `Current grade: ${courseScore}%` : ''}
+                {courseScore > 0  ? `Current grade: ${courseScore}%` : ''}
+            </Typography>
+            <Typography variant="h5" align='right'>
+                {(courseScore > 0 && courseScore >= 50) ? `Your kid is doing great! Keep learning`
+                    :
+                    `Never stop learning and having fun! Keep going`}
+            </Typography>
+            <br/>
+            <Typography align='right'>
+                <Button
+                    disabled={enrolled}
+                    className={classes.btn}
+                    onClick={onEnrollClick}>{!enrolled ? 'Enroll now' : 'Thanks for enrolling!'}</Button>
             </Typography>
             <Grid container>
                 <Grid item md={6}>
@@ -65,12 +79,6 @@ export default function MainFeaturedPost(props) {
                             {course.description}
                         </Typography>
                         
-                         <Typography align='center'>
-                        <Button
-                            disabled={enrolled}
-                            className={classes.btn}
-                            onClick={onEnrollClick}>{!enrolled ? 'Enroll now' : 'Thanks for enrolling!'}</Button>
-                       </Typography>
                     </div>
                 </Grid>
             </Grid>
