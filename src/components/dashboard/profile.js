@@ -6,13 +6,23 @@ import { withRouter } from 'react-router-dom';
 import { slug } from './../../utils/urlSlug';
 import dataService from '../../services/dataServices';
 import userService from '../../services/userService';
-import {Container, Grid, Typography} from '@material-ui/core';
+import {Container, Grid, Typography, Button} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import UiCard from '../common/UiCard';
 import  Loader  from 'react-loading';
 
+const color = '#ff6987';
+const useStyles = makeStyles(theme => ({
+   btn: {
+    color: color,
+    border: `1px solid ${color}`,
+    fontSize:'15px'
+   }
+}));
 const Profile = (props) => {
     const imageURL = 'http://localhost:5000/courseImages/';
-   
+    const classes = useStyles();
+
     const { user, history } = props;
 
     const [loading, setLoading] = useState(true);
@@ -85,9 +95,25 @@ const Profile = (props) => {
                 
                 />
                 <br/>
-           <Typography variant="h4"  align='center'>
-                            Your enrolled courses
-                        </Typography>
+            {enrolledCourses.length > 0 ?
+             <Typography variant="h4"  align='center'>
+                         Your enrolled courses
+                        </Typography> 
+                :
+                <>
+                 <Typography variant="h4"  align='center'>
+                         Your enrolled courses will live here
+                        </Typography> 
+                        <br/>
+                         <Typography align='center'>
+                        <Button variant='outlined' 
+                        className={classes.btn}
+                        onClick={()=> history.push('/')}>Get a course</Button>
+                        </Typography> 
+
+                        </>
+                        }
+          
                         <br/>
           <Grid container spacing={6}>
               
