@@ -42,29 +42,21 @@ const ParentalEvaluation = (props) => {
 
     // const criticalQuestions = ['Less satisfactory', 'Satisfactory', 'Great'];
 
-    const { evaluation, maxParentalScore, moduleId, courseId } = props;
+    const { evaluation, maxParentalScore, moduleId, courseId, enrolledCourses } = props;
     const { observational, questions } = evaluation;
 
     const [boxId, setBoxId] = React.useState('');
     const [score, setScore] = React.useState([]);
     const [criticalQuestions, setCriticalQuestions] = React.useState([]);
+    const [enrolled, setEnrolled] = React.useState(enrolledCourses);
+    const [feedbackSubmitted, setfeedbackSubmitted] = React.useState(false);
     const [feedback, setFeedback] = React.useState([]);
 
     React.useEffect(() => {
-        // const newcriticalQuestions = [];
-        // const data = [
-        //     { tag: 'Less satisfactory', weight: 1, selected: false },
-        //     { tag: 'Satisfactory', weight: 2, selected: false },
-        //     { tag: 'Great', weight: 3, selected: false }
-        // ];
-        // for (let q of questions) {
-        //     let obj = {};
-        //     obj.question = q;
-        //     obj.options = data;
-        //     newcriticalQuestions.push(obj);
-        // }
-
-        // setCriticalQuestions(newcriticalQuestions);
+        let courseObj = enrolled.find(course => course.courseId === courseId);
+        if (courseObj.score > 0) {
+            setfeedbackSubmitted(true);
+        }
 
         const newObservational = [];
         for (let i of observational) {
@@ -130,7 +122,9 @@ const ParentalEvaluation = (props) => {
                     parentalScore: arrSum(score) / maxParentalScore
                 }
             }
-            await dataService.postData(toPost);
+            const { data } = await dataService.postData(toPost);
+            // setEnrolled(data.enrolledCourses);
+            setfeedbackSubmitted(true);
             toast.success('Feedback scores successfully submitted');
         }
 
@@ -208,8 +202,9 @@ const ParentalEvaluation = (props) => {
                 <Button
                     type='submit'
                     variant='outlined'
-                    className={classes.btn}>
-                    Submit
+                    className={classes.btn}
+                    disabled={feedbackSubmitted}>
+                {!feedbackSubmitted ? 'Submit' : 'Submission successful'}
                 </Button>
             </form>
             </Grid>

@@ -34,11 +34,13 @@ const useStyles = makeStyles(theme => ({
 const Quiz = (props) => {
     const classes = useStyles();
 
-    const { courseId, quiz, moduleId, maxQuizScore } = props;
+    const { courseId, quiz, maxQuizScore, enrolledCourses } = props;
 
     const [boxId, setBoxId] = React.useState('');
     const [score, setScore] = React.useState([]);
     const [quizNew, setQuiz] = React.useState([]);
+    const [enrolled, setEnrolled] = React.useState(enrolledCourses);
+    const [quizSubmitted, setQuizSubmitted] = React.useState(false);
 
     React.useEffect(() => {
         let newQuiz = [...quiz]
@@ -48,12 +50,12 @@ const Quiz = (props) => {
          }
         }   
         setQuiz(newQuiz);
+        let courseObj = enrolled.find(course => course.courseId === courseId);
+        if (courseObj.score > 0) {
+            setQuizSubmitted(true);
+        }
     }, []) 
-    // const handleOption = (option) => {
-    //     setBoxId(option._id);
-    //     const weightages = [...score, option.weight];
-    //     setScore(weightages);
-    // }
+   
     const handleOptionChange = ({ currentTarget }, option) => {
         let weightage = [...score];
         let weight = 0;
@@ -92,12 +94,13 @@ const Quiz = (props) => {
                 resource: 'course/quiz', 
                 parameter: courseId,
                 data: {
-                    moduleId: moduleId,
                     quizScore: arrSum(score) / maxQuizScore
                 }
            } 
-        await dataService.postData(toPost);
-        toast.success('Scores successfully submitted');
+            const { data } = await dataService.postData(toPost);
+            toast.success('Scores successfully submitted');
+            // setEnrolled(data.enrolledCourses);
+            setQuizSubmitted(true);
         }
 
         catch (e) {
@@ -149,8 +152,9 @@ const Quiz = (props) => {
                 <Button
                     type='submit'
                     variant='outlined'
-                    className={classes.btn}>
-                Submit
+                    className={classes.btn}
+                    disabled={quizSubmitted}>
+                {!quizSubmitted ? 'Submit' : 'Submission successful'}
                 </Button>
                 </form>
                 </Grid>

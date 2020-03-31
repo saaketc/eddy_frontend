@@ -72,8 +72,8 @@ function ModulePage(props) {
   const history = useHistory();
 
   const { container, location } = props;
-  const { mod, courseId } = location.state;
-  const { activityContent, evaluation, quiz, _id: moduleId,
+  const { mod, courseId, enrolledCourses } = location.state;
+  const { activityContent, evaluation, quiz,
         maxQuizScore, maxParentalScore } = mod;
   
   const classes = useStyles();
@@ -243,17 +243,17 @@ function ModulePage(props) {
           {quizEval &&
             <Quiz
             quiz={quiz}
-            moduleId={moduleId}
             maxQuizScore={maxQuizScore}
-            courseId={courseId}/>
+            courseId={courseId}
+            enrolledCourses={enrolledCourses}/>
           }
 
           {parentEval &&
             <ParentalEvaluation
             evaluation={evaluation}
-            moduleId={moduleId}
             maxParentalScore={maxParentalScore}
-            courseId={courseId}/>
+            courseId={courseId}
+            enrolledCourses={enrolledCourses} />
           }
         </Container>
       </main>

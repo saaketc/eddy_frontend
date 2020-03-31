@@ -81,7 +81,8 @@ export default function CoursePage(props) {
   const handleModuleClick = (mod) => {
     let data = {
       mod,
-      courseId
+      courseId,
+      enrolledCourses
     }
     return enrolled ? history.push(`/modules/${slug(mod.title)}`, data) :
                       toast.success('Kindly enroll in the course to access');

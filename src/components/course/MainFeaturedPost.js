@@ -65,7 +65,7 @@ export default function MainFeaturedPost(props) {
                         <Button
                             disabled={enrolled}
                             className={classes.btn}
-                            onClick={onEnrollClick}>{!enrolled ? 'Enroll to access' : 'Thanks for enrolling!'}</Button>
+                            onClick={onEnrollClick}>{!enrolled ? 'Enroll now' : 'Thanks for enrolling!'}</Button>
                        </Typography>
                     </div>
                 </Grid>
