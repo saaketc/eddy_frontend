@@ -128,7 +128,6 @@ const Profile = (props) => {
                                     data={course}
                                     property='title'
                                     content={course.description}
-                                    secondaryContent={course.courseScore > 0 ? `Score: ${course.courseScore}` : ''}
                                     mediaHeight={true}
                                     onClick={handleClick}
                                     buttonLabel1='Go learn'

@@ -51,6 +51,7 @@ export default function CoursePage(props) {
 
   const [enrolled, setEnrolled] = React.useState(false);
   const [enrolledCourses, setEnrolledCourses] = React.useState([{}]);
+  const [courseScore, setCourseScore] = React.useState(0);
 
   React.useEffect(() => {
     // api to fetch enrolled courses
@@ -64,7 +65,9 @@ export default function CoursePage(props) {
         }
 
         // console.log(course, courseId);
-      }
+       }
+       let courseObj = data.find(course => course.courseId === courseId);
+      setCourseScore(((courseObj.score / modules.length) * 100).toFixed(2));
       setEnrolledCourses(data);
       // console.log(data);
       // console.log(courseId)
@@ -111,7 +114,8 @@ export default function CoursePage(props) {
           <br/>
           <MainFeaturedPost course={course}
             enrolled={enrolled}
-            onEnrollClick={handleEnroll}/>
+            onEnrollClick={handleEnroll}
+            courseScore={courseScore} />
           
           <Grid container spacing={4}>
               <Grid item xs={12} md={6} lg={6}>

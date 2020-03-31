@@ -47,11 +47,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function MainFeaturedPost(props) {
     const classes = useStyles();
-    const { course, enrolled, onEnrollClick } = props;
+    const { course, enrolled, onEnrollClick, courseScore } = props;
 
     return (
         <Paper className={classes.mainFeaturedPost}>
             <div className={classes.overlay} />
+            <Typography variant="h4" align='right'>
+                {courseScore > 0 ? `Current grade: ${courseScore}%` : ''}
+            </Typography>
             <Grid container>
                 <Grid item md={6}>
                     <div className={classes.mainFeaturedcourseContent}>
@@ -61,6 +64,7 @@ export default function MainFeaturedPost(props) {
                         <Typography variant="h6"  paragraph align='center'>
                             {course.description}
                         </Typography>
+                        
                          <Typography align='center'>
                         <Button
                             disabled={enrolled}
