@@ -50,7 +50,7 @@ export default function CoursePage(props) {
   const { skills, transformation, modules, _id: courseId } = course;
 
   const [enrolled, setEnrolled] = React.useState(false);
-  const [enrolledCourses, setEnrolledCourses] = React.useState([]);
+  const [enrolledCourses, setEnrolledCourses] = React.useState([{}]);
 
   React.useEffect(() => {
     // api to fetch enrolled courses
@@ -58,7 +58,7 @@ export default function CoursePage(props) {
      try{
      const {data} = await dataService.fetchOne('users/enrolledCourses');
        for (let course of data){
-        if(course === courseId){
+        if(course.courseId === courseId){
           setEnrolled(true);
           break;
         }
