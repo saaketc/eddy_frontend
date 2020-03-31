@@ -79,7 +79,6 @@ const Quiz = (props) => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        toast.success(`Score ${arrSum(score)}`);
         setScore([]);
         // to clear selected field
         let ques = [...quizNew]

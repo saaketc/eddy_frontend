@@ -43,7 +43,7 @@ const Activity = (props) => {
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={6}>
-        <Typography variant='h4' className={classes.heading}>
+        <Typography variant='h3' className={classes.heading}>
            Activity {activity.title}
             </Typography>
         <br />
