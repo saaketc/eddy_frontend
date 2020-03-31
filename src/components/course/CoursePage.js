@@ -50,7 +50,7 @@ export default function CoursePage(props) {
   const { skills, transformation, modules, _id: courseId } = course;
 
   const [enrolled, setEnrolled] = React.useState(false);
-  const [enrolledCourses, setEnrolledCourses] = React.useState([{}]);
+  const [enrolledCourses, setEnrolledCourses] = React.useState([]);
   const [courseScore, setCourseScore] = React.useState(0);
 
   React.useEffect(() => {
@@ -78,7 +78,7 @@ export default function CoursePage(props) {
      }
     }
     fetchEnrolledCourses();
-  }, [])
+  }, [enrolledCourses])
   
   // module click
   const handleModuleClick = (mod) => {

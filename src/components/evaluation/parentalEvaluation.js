@@ -48,15 +48,15 @@ const ParentalEvaluation = (props) => {
     const [boxId, setBoxId] = React.useState('');
     const [score, setScore] = React.useState([]);
     const [criticalQuestions, setCriticalQuestions] = React.useState([]);
-    const [enrolled, setEnrolled] = React.useState(enrolledCourses);
+    // const [enrolled, setEnrolled] = React.useState(enrolledCourses);
     const [feedbackSubmitted, setfeedbackSubmitted] = React.useState(false);
     const [feedback, setFeedback] = React.useState([]);
 
     React.useEffect(() => {
-        let courseObj = enrolled.find(course => course.courseId === courseId);
-        if (courseObj.score > 0) {
-            setfeedbackSubmitted(true);
-        }
+        // let courseObj = enrolled.find(course => course.courseId === courseId);
+        // if (courseObj.score > 0) {
+        //     setfeedbackSubmitted(true);
+        // }
 
         const newObservational = [];
         for (let i of observational) {

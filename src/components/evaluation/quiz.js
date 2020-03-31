@@ -39,7 +39,7 @@ const Quiz = (props) => {
     const [boxId, setBoxId] = React.useState('');
     const [score, setScore] = React.useState([]);
     const [quizNew, setQuiz] = React.useState([]);
-    const [enrolled, setEnrolled] = React.useState(enrolledCourses);
+    // const [enrolled, setEnrolled] = React.useState(enrolledCourses);
     const [quizSubmitted, setQuizSubmitted] = React.useState(false);
 
     React.useEffect(() => {
@@ -50,10 +50,10 @@ const Quiz = (props) => {
          }
         }   
         setQuiz(newQuiz);
-        let courseObj = enrolled.find(course => course.courseId === courseId);
-        if (courseObj.score > 0) {
-            setQuizSubmitted(true);
-        }
+        // let courseObj = enrolled.find(course => course.courseId === courseId);
+        // if (courseObj.score > 0) {
+        //     setQuizSubmitted(true);
+        // }
     }, []) 
    
     const handleOptionChange = ({ currentTarget }, option) => {
