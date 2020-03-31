@@ -11,7 +11,15 @@ import  Typography  from '@material-ui/core/Typography';
 import  Grid  from '@material-ui/core/Grid';
 import  Container  from '@material-ui/core/Container';
 import  Loader  from 'react-loading';
-import C1 from '../../illustrations/course1.svg';
+import welcomeillus1 from '../../illustrations/fatherhood.svg';
+import welcomeillus2 from '../../illustrations/superhero.svg';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    heading:{
+        fontWeight: '500'
+    }
+}))
 
 const Dashboard = (props) => {
   
@@ -20,6 +28,7 @@ const Dashboard = (props) => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const classes = useStyles();
     const handleClick = (course) => {
         return history.push(`/courses/${slug(course.title)}`, course);
         
@@ -34,7 +43,7 @@ const Dashboard = (props) => {
                 setLoading(false);
             }
             catch (ex) {
-                return toast.error(ex.message);
+                return toast.error("Couldn't get courses!");
             }
 
         }
@@ -46,10 +55,29 @@ const Dashboard = (props) => {
          
             <br />
             <br />
-            <Typography gutterBottom variant="h3">
-              Pick courses for your kid
+            <Typography gutterBottom variant="h3" className={classes.heading}>
+                {`Welcome ${user.firstName},`}
+                </Typography>
+                <br/>
+                <Typography gutterBottom variant="h4">
+                Pick courses for your kid to make him stand out in the crowd!
                 </Typography>
             <br />
+            <Grid container spacing={6}>
+            <Grid item lg={6}>
+                    <img src={welcomeillus1} alt="welcome" />
+                </Grid>
+                <Grid item lg={6}>
+                    <img src={welcomeillus2} alt="happy" />
+                </Grid>
+            </Grid>
+            <br/>
+            <br/>
+             <Typography gutterBottom variant="h3" className={classes.heading}>
+                Curated courses for your kid
+                </Typography>
+                <br/>
+                <br/>
             {loading ? <Grid alignItems='center' justify='center' ><Loader type='spin' height='20%' width='20%' color='#ff6987' /></Grid> : (
                 
                 <Grid container spacing={6}>
