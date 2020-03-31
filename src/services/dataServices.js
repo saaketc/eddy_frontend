@@ -18,7 +18,7 @@ const fetchAll = resource => {
 }
     
 
-const fetchOne = (resource, parameter, useConfig = true) => {
+const fetchOne = (resource, parameter ='', useConfig = true) => {
     const c = useConfig ? config : null;
     return axios.get(`${url}/${resource}/${parameter}`, config);
 }
@@ -27,8 +27,12 @@ const postData = ({ resource, parameter = '', data }) => {
     return axios.post(`${url}/${resource}/${parameter}`, data, config);   
 }
 
+const putData = ({ resource, parameter = '', data }) => {
+    return axios.put(`${url}/${resource}/${parameter}`, data, config); 
+}
 export default {
     fetchAll,
     fetchOne,
-    postData
+    postData,
+    putData
 }

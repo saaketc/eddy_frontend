@@ -18,7 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 //import SignupButton from '../buttons/SignupButton';
-const color = '#047b63';
+const color = '#ff6987';
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function AuthForm({ onSubmit, onChange, data, heading, pass, signup, label }) {
+function AuthForm({ onSubmit, onChange, data, heading, pass, signup, profile, label, noLabel }) {
     const classes = useStyles();
 
     return (
@@ -67,7 +67,7 @@ function AuthForm({ onSubmit, onChange, data, heading, pass, signup, label }) {
                 </Typography>
                 <form onSubmit={onSubmit} className={classes.form}>
                     <Grid container spacing={2}>
-                        {signup &&
+                        {(signup || profile) &&
                             <>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -79,7 +79,7 @@ function AuthForm({ onSubmit, onChange, data, heading, pass, signup, label }) {
                                 required
                                 fullWidth
                                 id="firstName"
-                                label="First Name"
+                                label={!noLabel ? "First Name" : ""}
                                 autoFocus
                             />
                         </Grid>
@@ -89,7 +89,7 @@ function AuthForm({ onSubmit, onChange, data, heading, pass, signup, label }) {
                                 required
                                 fullWidth
                                 id="lastName"
-                                label="Last Name"
+                                label={!noLabel ? "Last Name" : ""}
                                 name="lastName"
                                 value={data.lastName}
                                 onChange={onChange}
@@ -117,7 +117,7 @@ function AuthForm({ onSubmit, onChange, data, heading, pass, signup, label }) {
                                 required
                                 fullWidth
                                 id="email"
-                                label="Email Address"
+                                label={!noLabel ? "Email Address" : ""}
                                 name="email"
                                 value={data.email}
                                 onChange={onChange}
@@ -160,7 +160,7 @@ function AuthForm({ onSubmit, onChange, data, heading, pass, signup, label }) {
                                     Already have an account? Sign in
               </Link>
                             }
-                            {!signup &&
+                            {(!signup && !profile) &&
                             
                                 <Link to='/auth/signup' variant="body2">
                                     Not a member? Sign up

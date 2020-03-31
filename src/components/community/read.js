@@ -11,7 +11,7 @@ import  Container from '@material-ui/core/Container';
 import  Button from '@material-ui/core/Button';
 
 const style = {
-    backgroundColor: '#047b63',
+    backgroundColor: '#ff6987',
     color: 'white'
 }
 

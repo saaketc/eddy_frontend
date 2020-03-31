@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     card: {
         maxWidth: 345,
-        
+     
     },
     media: {
         height: 140,
@@ -27,7 +27,7 @@ export default function UiCard(props) {
     
     const classes = useStyles();
    
-    const { image, content, data, property, mediaHeight, buttonLabel1, buttonLabel2, onClick } = props;
+    const { image, content, secondaryContent, data, property, mediaHeight, buttonLabel1, buttonLabel2, onClick } = props;
     return (
         <Card className={classes.card}
            
@@ -46,6 +46,12 @@ export default function UiCard(props) {
                     <Typography variant="body2" color="textSecondary" component="p">
                        {content}
           </Typography>
+          {secondaryContent &&
+          <Typography variant="h6" color="textSecondary">
+                       {secondaryContent}
+          </Typography>
+          }
+           
                 </CardContent>
             </CardActionArea>
             <CardActions>

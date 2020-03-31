@@ -8,9 +8,9 @@ import Button from '@material-ui/core/Button';
 import welcome1 from '../illustrations/welcome-1.svg';
 // import  Container  from '@material-ui/core/Container';
 import  Typography  from '@material-ui/core/Typography';
+import Footer from './course/Footer';
 
-
-const color = '#047b63';
+const color = '#ff6987';
 // const style = {
 //   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
 //   borderRadius: 3,
@@ -46,17 +46,17 @@ const Welcome = (props) => {
         <img src={welcome1}/>
         </Grid>
         <Grid item xs>
-          <Typography variant='h3'
+          <Typography variant='h4'
             style={{ fontWeight: '700' }}>
             <br/>
-            Applied soft skills learning space
-            for the <br/> millennials!
+            A creative and value based <br/>learning 
+            for <br/> kids 
          </Typography>
-          <Typography variant='h6'>
+          {/* <Typography variant='h6'>
             <br />
            Join now to understand different soft skills techniques, <br/>
              get better at applying them in the real world <br/> with our LoopSpace practice ground and community.
-         </Typography>
+         </Typography> */}
           <br/>
           <Button
             type="submit" 
@@ -70,15 +70,16 @@ const Welcome = (props) => {
        
       </Grid>
       
-  
-      <footer>
+       <Footer title="For a happy learning and growing experience!" description="A product of Tremollo" />
 
-        <small style={{ fontFamily: 'Roboto' }}>Copyright &copy;  {new Date().getFullYear()} <Link color='inherit' href='/'>ThinkinLoop | </Link> <Link color='inherit' href='/'>Terms  </Link>
+      {/* <footer>
+
+        <small style={{ fontFamily: 'Roboto' }}>Copyright &copy;  {new Date().getFullYear()} <Link color='inherit' href='/'>Tremollo | </Link> <Link color='inherit' href='/'>Terms  </Link>
          | <Link color='inherit' href='/'> Privacy</Link></small>
       
         
 
-        </footer>
+        </footer> */}
     </>
   )
 }

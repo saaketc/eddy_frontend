@@ -11,23 +11,26 @@ import  Typography  from '@material-ui/core/Typography';
 import  Grid  from '@material-ui/core/Grid';
 import  Container  from '@material-ui/core/Container';
 import  Loader  from 'react-loading';
+import C1 from '../../illustrations/course1.svg';
 
 const Dashboard = (props) => {
   
+    const imageURL = 'http://localhost:5000/courseImages/';
     const { user, history } = props;
-    const [topics, setTopic] = useState([]);
+    const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const handleClick = (topic) => {
-        return history.push(`/practice/${slug(topic.title)}`, topic);
-        //return history.push(`/practice/${topic.title}`, topic);
+    const handleClick = (course) => {
+        return history.push(`/courses/${slug(course.title)}`, course);
+        
+        
     }
    
     useEffect(() => {
-        async function fetchTopics(resource) {
+        async function fetchcourses(resource) {
             try {
                 const { data } = await dataServices.fetchAll(resource);
-                setTopic(data);
+                setCourses(data);
                 setLoading(false);
             }
             catch (ex) {
@@ -35,32 +38,32 @@ const Dashboard = (props) => {
             }
 
         }
-        fetchTopics('learning');
+        fetchcourses('course');
 
-    }, []);
+    }, [courses]);
     return (
     <Container>
          
             <br />
             <br />
-            <Typography gutterBottom variant="h2">
-                Applied soft skills
+            <Typography gutterBottom variant="h3">
+              Pick courses for your kid
                 </Typography>
             <br />
-            {loading ? <Grid alignItems='center' justify='center' ><Loader type='spin' height='20%' width='20%' color='#047b63' /></Grid> : (
+            {loading ? <Grid alignItems='center' justify='center' ><Loader type='spin' height='20%' width='20%' color='#ff6987' /></Grid> : (
                 
                 <Grid container spacing={6}>
                     {
-                        topics.map(topic => (
+                        courses.map(course => (
                   
                         
                            
                             <Grid item lg={4}>
                                 <UiCard
-                                    image={problem_solving}
-                                    data={topic}
+                                    image={imageURL + course.image}
+                                    data={course}
                                     property='title'
-                                    content='This is some test content.'
+                                    content={course.description}
                                     mediaHeight={true}
                                     onClick={handleClick}
                                     buttonLabel1='Go learn'

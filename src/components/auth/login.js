@@ -22,6 +22,7 @@ const Login = (props) => {
         }
         catch (e) {
             toast.error(e.message);
+            
         }
     }
     return (

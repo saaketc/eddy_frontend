@@ -5,18 +5,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 import Welcome from './components/welcome';
+import CoursePage from './components/course/CoursePage';
+import ModulePage from './components/course/ModulePage';
 import Signup from './components/auth/signup';
 import Login from './components/auth/login';
 import Logout from './components/auth/logout';
 import Community from './components/community/community';
 import userService from './services/userService';
 import Dashboard from './components/dashboard/dashboard';
+import Profile from './components/dashboard/profile';
 import ReadQuestion from './components/community/read';
-import ReadTopic from './components/practice/readTopic';
-import ReadChapter from './components/practice/readChapter';
 import Navbar from './components/navbar/navbar';
-import LoopSpace from './components/loopSpace/loopSpace';
-import Activity from './components/loopSpace/activity';
 import dataServices from './services/dataServices';
 import { slug } from './utils/urlSlug';
 
@@ -78,16 +77,15 @@ const App = (props) => {
         onClickSearchItem={onClickSearchItem}
         />
      
-        <Switch>
+      <Switch>
+          <Route path='/modules/:title' render={props => <ModulePage {...props} user={user} />}/>
+          <Route path='/courses/:title' component={CoursePage} />
+          <Route path='/profile' render={props => <Profile {...props} user={user} />}/>
           <Route path='/auth/signup' component={Signup} />
           <Route path='/auth/login' component={Login} />
           <Route path='/logout' component={Logout} />
-          <Route path='/practice/:topic/:title' render={props => <ReadChapter {...props} user={user} />}/>
-          <Route path='/practice/:topic' render={props => <ReadTopic {...props} user={user} />}/>
           <Route path='/community/:title' render={props => <ReadQuestion {...props} user={user} />}/>
           <Route path='/community' render={props => <Community {...props} user={user} />} />
-          <Route path='/LoopSpace/:activity' render={props => <Activity {...props} user={user}/>}/>
-          <Route path='/LoopSpace' render={props => <LoopSpace {...props} user={user}/>}/>
           <Route exact path='/' render={props => user ? <Dashboard {...props} user={user} /> : <Welcome/>} />
         </Switch>
      

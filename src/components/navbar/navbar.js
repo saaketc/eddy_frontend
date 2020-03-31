@@ -20,7 +20,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import logo from '../../illustrations/logo.png';
 import  './navbar.css';
-const color = '#047b63';
+// const color = '#047b63';
+const color = '#ff6987';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -106,36 +107,41 @@ const { onAuthClick, onGeneralClick, user } = props;
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleProfile = () => {
+    return props.history.push('/profile');
+
+  }
   const handleLogout = () =>{
-    return props.history.push('/logout')
+    return props.history.push('/logout');
   }
   return (
     <div className={classes.root}>
           <AppBar position="static"
           style={{ backgroundColor:'white' }}>
         <Toolbar>
-          {/* <IconButton
+          <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
+            
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton> */}
-          <Typography className={classes.title} variant="h6" noWrap>
+          </IconButton>
+          <Typography className={classes.title} variant="h4" noWrap >
                       
-                        <a href='/'>  <img src={logo} /></a>
-                      
+                        {/* <a href='/'>  <img src={logo} /></a> */}
+            <a style={{textDecoration:'none', color:color}}href='/'>Teddy </a>   
           </Typography>
           {
             user &&
             <div>
               <Button color="inherit"
                 style={{ color: 'black' }}
-                onClick={() => onGeneralClick('practice')}>LearnSpace</Button>
-              <Button color="inherit"
+                onClick={() => onGeneralClick('practice')}>Playground</Button>
+              {/* <Button color="inherit"
                 style={{ color: 'black' }}
-                onClick={() => onGeneralClick('loopSpace')}>LoopSpace</Button>
+                onClick={() => onGeneralClick('loopSpace')}>LoopSpace</Button> */}
             </div>
           }
                    <div>
@@ -178,7 +184,7 @@ const { onAuthClick, onGeneralClick, user } = props;
                       <Button color="inherit" 
                 onClick={() => onAuthClick('signup')}
                 className={classes.btn}
-              >Get started
+              >For parents
               </Button>
                   </div>
                   </>
@@ -212,7 +218,7 @@ const { onAuthClick, onGeneralClick, user } = props;
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleProfile}>Profile</MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>

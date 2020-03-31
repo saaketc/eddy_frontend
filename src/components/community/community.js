@@ -10,9 +10,9 @@ import  Grid from '@material-ui/core/Grid';
 import  Typography from '@material-ui/core/Typography';
 import UiModal from './../common/UiModal';
 
-const color = '#047b63';
+const color = '#ff6987';
 const style = {
-    backgroundColor: '#047b63',
+    backgroundColor: '#ff6987',
     color: 'white'
 }
 const Community = (props) => {
@@ -94,9 +94,7 @@ const Community = (props) => {
         <Container>
             <br/>
             <br />
-            {loading ? <Grid alignItems='center' justify='center'><Loader type='spin' height='20%' width='20%' color='#047b63'/></Grid> : (
-                <>
-                <Typography gutterBottom variant="h2">
+              <Typography gutterBottom variant="h2">
                     {user ? 'Ask community' : 'Join the community!'}
                 </Typography>
                 <div>
@@ -113,6 +111,9 @@ const Community = (props) => {
                     <br />
                     <br />
                 </div>
+            {loading ? <Grid alignItems='center' justify='center'><Loader type='spin' height='20%' width='20%' color='#ff6987'/></Grid> : (
+                <>
+              
                 <Grid container spacing={6}>
                     {
 
