@@ -78,7 +78,7 @@ export default function CoursePage(props) {
      }
     }
     fetchEnrolledCourses();
-  }, [enrolledCourses])
+  }, [])
   
   // module click
   const handleModuleClick = (mod) => {

@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 // const url = 'http://localhost:5000/api';
-// const url = 'https://eddy-app.herokuapp.com/api';
-const url = 'http://api.tremollo.co:5000/api';
+const url = 'https://eddy-app.herokuapp.com/api';
+// const url = 'http://api.tremollo.co:5000/api';
 const tokenKey = 'privateUserToken';
 
 const getToken = () => {

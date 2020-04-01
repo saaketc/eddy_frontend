@@ -2,8 +2,8 @@ import axios from 'axios';
 // import _ from 'lodash';
 import jwtDecode from 'jwt-decode';
 // const url = 'http://localhost:5000/api';
-// const url = 'https://eddy-app.herokuapp.com/api';
-const url = 'http://api.tremollo.co:5000/api';
+const url = 'https://eddy-app.herokuapp.com/api';
+// const url = 'http://api.tremollo.co:5000/api';
 
 const tokenKey = 'privateUserToken';
 
