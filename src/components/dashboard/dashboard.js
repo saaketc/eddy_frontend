@@ -51,7 +51,7 @@ const Dashboard = (props) => {
         }
         fetchcourses('course');
 
-    }, [courses]);
+    }, []);
     return (
     <Container>
          
