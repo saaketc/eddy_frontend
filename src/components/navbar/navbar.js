@@ -131,7 +131,7 @@ const { onAuthClick, onGeneralClick, user } = props;
           <Typography className={classes.title} variant="h4" noWrap >
                       
                         {/* <a href='/'>  <img src={logo} /></a> */}
-            <a style={{textDecoration:'none', color:color}}href='/'>Teddy </a>   
+            <a style={{textDecoration:'none', color:color}}href='/'>Eddy </a>   
           </Typography>
           {
             user &&
