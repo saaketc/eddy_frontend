@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = (props) => {
   
-    const imageURL = 'http://localhost:5000/courseImages/';
+    // const imageURL = 'http://localhost:5000/courseImages/';
+    const imageURL = 'https://eddy-app.herokuapp.com/courseImages/';
     const { user, history } = props;
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);

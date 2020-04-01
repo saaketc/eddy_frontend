@@ -20,7 +20,9 @@ const useStyles = makeStyles(theme => ({
    }
 }));
 const Profile = (props) => {
-    const imageURL = 'http://localhost:5000/courseImages/';
+    // const imageURL = 'http://localhost:5000/courseImages/';
+    const imageURL = 'https://eddy-app.herokuapp.com/courseImages/';
+
     const classes = useStyles();
 
     const { user, history } = props;
