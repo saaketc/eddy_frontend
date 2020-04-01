@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/api';
+// const url = 'http://localhost:5000/api';
+const url = 'https://eddy-app.herokuapp.com/api';
 const tokenKey = 'privateUserToken';
 
 const getToken = () => {
