@@ -6,6 +6,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import musicbird from '../../illustrations/donut.svg';
 import exercise from '../../illustrations/exercise.svg';
+import musicbird_small from '../../illustrations/donut_small.svg';
+import exercise_small from '../../illustrations/exercise_small.svg';
+import  Hidden  from '@material-ui/core/Hidden';
 
 const color = '#ff6987'
 const useStyles = makeStyles(theme => ({
@@ -38,14 +41,30 @@ const Activity = (props) => {
   return (
     <Container maxWidth='lg'>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={12} md={6} lg={6}>
+       <Hidden mdDown>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
           <img src={activityIndex === 0 ? exercise : musicbird} alt="activity" />
         </Grid>
-
-        <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Typography variant='h3' className={classes.heading}>
+         </Hidden>
+      <Hidden only='lg'>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+             <Hidden only='lg'>
+            <Typography variant='h4' className={classes.heading}>
             Activity {activity.title}
           </Typography>
+          <br/>
+          <br/>
+          </Hidden>
+          <img src={activityIndex === 0 ? exercise_small : musicbird_small} alt="activity" />
+        </Grid>
+         </Hidden>
+
+        <Grid item xs={12} sm={12} md={6} lg={6}>
+        <Hidden mdDown>
+            <Typography variant='h3' className={classes.heading}>
+            Activity {activity.title}
+          </Typography>
+          </Hidden>
           <br />
           <br />
 

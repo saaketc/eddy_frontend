@@ -10,6 +10,9 @@ import  Grid from '@material-ui/core/Grid';
 import  Container from '@material-ui/core/Container';
 import  Button from '@material-ui/core/Button';
 
+import communityillus from '../../illustrations/ques.svg';
+import  Hidden  from '@material-ui/core/Hidden';
+
 const style = {
     backgroundColor: '#ff6987',
     color: 'white'
@@ -46,7 +49,7 @@ const ReadQuestion = (props) => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (answer === ''|| answer === ' ')
+        if (answer === '')
             return toast.error('Answer cannot be empty!');
         let ques = { ...question };
         let ans = {
@@ -74,10 +77,12 @@ const ReadQuestion = (props) => {
     }
    
     return (
-        <Container>
+        <Container maxWidth='lg'>
           
             <br />
             <br />
+             <Grid container spacing={4}>
+            <Grid item xs={12} lg={6}>
             <Button variant="outlined"  onClick={() => window.history.back()}>Back</Button>
             <br/>
             <br/>
@@ -109,19 +114,30 @@ const ReadQuestion = (props) => {
             {
                 question.answers.map(ans => (
                     <>
-                        <Grid container spacing={6}>
-                            <Grid item lg={4}>
+                        
+                            <Grid item xs={12} lg={6}>
                                 <UiCard
                                 data={ans}
                                 property='answer'
                                 content={ans.author}
                                /> 
-                                </Grid>
+                                
                             </Grid>
+                            <br/>
+                            <br/>
                     </>
                 ))
             }
-
+          
+                </Grid>
+                
+                      <Hidden mdDown>
+            <Grid item lg={6}>
+                <img src={communityillus} alt='answer'/>
+                </Grid>
+                </Hidden>
+                    </Grid>
+                
         </Container>
     )
 }

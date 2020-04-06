@@ -13,7 +13,10 @@ import  Container  from '@material-ui/core/Container';
 import  Loader  from 'react-loading';
 import welcomeillus1 from '../../illustrations/fatherhood.svg';
 import welcomeillus2 from '../../illustrations/superhero.svg';
+import welcomeillus1_small from '../../illustrations/fatherhood_small.svg';
+import welcomeillus2_small from '../../illustrations/superhero_small.svg';
 import { makeStyles } from '@material-ui/core/styles';
+import  Hidden  from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles(theme => ({
     heading:{
@@ -62,16 +65,26 @@ const Dashboard = (props) => {
                 </Typography>
                 <br/>
                 <Typography gutterBottom variant="h4">
-                Pick courses for your kid to make him stand out in the crowd!
+                Pick these awesome courses and make your kid stand out in the crowd!
                 </Typography>
             <br />
             <Grid container spacing={6}>
-            <Grid item lg={6}>
+           <Hidden mdDown>
+               <Grid item lg={6}>
                     <img src={welcomeillus1} alt="welcome" />
                 </Grid>
                 <Grid item lg={6}>
                     <img src={welcomeillus2} alt="happy" />
                 </Grid>
+               </Hidden>
+               <Hidden only='lg'>
+                  
+                   <Grid item lg={6}>
+                    <img src={welcomeillus1_small} alt="welcome" />
+                </Grid>
+                <Grid item lg={6}>
+                    <img src={welcomeillus2_small} alt="happy" />
+                </Grid> </Hidden>
             </Grid>
             <br/>
             <br/>

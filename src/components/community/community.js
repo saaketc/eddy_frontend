@@ -9,6 +9,9 @@ import  Container  from '@material-ui/core/Container';
 import  Grid from '@material-ui/core/Grid';
 import  Typography from '@material-ui/core/Typography';
 import UiModal from './../common/UiModal';
+import communityillus from '../../illustrations/community.svg';
+// import communityillus_small from '../../illustrations/community_small.svg';
+import  Hidden  from '@material-ui/core/Hidden';
 
 const color = '#ff6987';
 const style = {
@@ -86,9 +89,19 @@ const Community = (props) => {
         <Container>
             <br/>
             <br />
+            <Grid container spacing={4}>
+                <Grid xs={12} lg={6}>
+             <Hidden mdDown>
               <Typography gutterBottom variant="h3">
                     {user ? 'Ask the community about anything related to kids!' : 'Join the community!'}
                 </Typography>
+                </Hidden>
+
+                 <Hidden only='lg'>
+              <Typography gutterBottom variant="h4">
+                    {user ? 'Ask the community about anything related to kids!' : 'Join the community!'}
+                </Typography>
+                </Hidden>
                 <div>
                     <UiModal
                             style={style}
@@ -105,27 +118,35 @@ const Community = (props) => {
                 </div>
             {loading ? <Grid alignItems='center' justify='center'><Loader type='spin' height='20%' width='20%' color='#ff6987'/></Grid> : (
                 <>
-              
-                <Grid container spacing={6}>
                     {
 
                         questions.map(ques => (
                             <>
-                                <Grid item lg={4} key={ques._id}>
+                                <Grid item xs={12} lg={6} key={ques._id}>
                                     <UiCard
                                         data={ques}
                                         property='question'
                                         content={ques.author}
                                         onClick={handleQuesClick} />
                                 </Grid>
+                                <br/>
+                                <br/>
                             </>
                         ))
 
                     }
-                    </Grid>
+                    
                     </>
             )}
-           
+            </Grid>
+              <Grid xs={12} lg={6}>
+
+                       <Hidden mdDown>
+                             <img src={communityillus} alt='ask community'/>
+                           </Hidden>
+                           
+            </Grid>
+         </Grid>  
     </Container>
   )
 

@@ -6,9 +6,11 @@ import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 //import ps from '../illustrations/ps.svg';
 import welcome1 from '../illustrations/welcome-1.svg';
+import welcome_small from '../illustrations/welcome_small.svg';
 // import  Container  from '@material-ui/core/Container';
 import  Typography  from '@material-ui/core/Typography';
 import Footer from './course/Footer';
+import  Hidden  from '@material-ui/core/Hidden';
 
 const color = '#ff6987';
 // const style = {
@@ -42,21 +44,39 @@ const Welcome = (props) => {
       <br />
    
       <Grid container spacing={4}>
-        <Grid item xs>
-        <img src={welcome1}/>
+        <Grid item xs={12} lg={6}>
+        <Hidden mdDown>
+            <img src={welcome1} />
+          </Hidden>
+          <Hidden only='lg'>
+            <img src={welcome_small} />
+          </Hidden>
         </Grid>
+        
         <Grid item xs>
-          <Typography variant='h4'
-            style={{ fontWeight: '700' }}>
+        <Hidden mdDown>
+            <Typography variant='h4'
+            style={{ fontWeight: '800' }}>
             <br/>
-            A creative and value based <br/>learning 
-            for <br/> kids 
-         </Typography>
-          {/* <Typography variant='h6'>
+            An alternate school for upskilling your kids <br/> 
+            with responsible problem solving skills and value based education
+            
+           </Typography>
+          </Hidden>
+          <Hidden only='lg'>
+            <Typography variant='h5'
+            style={{ fontWeight: '800' }}>
+            <br/>
+            An alternate school for upskilling your kids <br/> 
+            with responsible problem solving skills and value based education
+            
+           </Typography>
+          </Hidden>
+
+          <Typography variant='h6' style={{ fontWeight: '600' }}>
             <br />
-           Join now to understand different soft skills techniques, <br/>
-             get better at applying them in the real world <br/> with our LoopSpace practice ground and community.
-         </Typography> */}
+          Enroll now for classes 6 to 8.
+         </Typography>
           <br/>
           <Button
             type="submit" 
@@ -70,16 +90,8 @@ const Welcome = (props) => {
        
       </Grid>
       
-       <Footer title="For a happy learning and growing experience!" description="A product of Tremollo" />
+       <Footer title="For a happy learning and growing experience!" description="" />
 
-      {/* <footer>
-
-        <small style={{ fontFamily: 'Roboto' }}>Copyright &copy;  {new Date().getFullYear()} <Link color='inherit' href='/'>Tremollo | </Link> <Link color='inherit' href='/'>Terms  </Link>
-         | <Link color='inherit' href='/'> Privacy</Link></small>
-      
-        
-
-        </footer> */}
     </>
   )
 }

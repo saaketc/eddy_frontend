@@ -13,9 +13,11 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import { slug } from '../../utils/urlSlug';
 import courseillus from '../../illustrations/joyride.svg';
+import courseillus_small from '../../illustrations/joyride_small.svg';
 import { toast } from 'react-toastify';
 import { Button } from '@material-ui/core';
 import dataService from '../../services/dataServices';
+import  Hidden  from '@material-ui/core/Hidden';
 
 const color = '#ff6987';
 
@@ -181,10 +183,16 @@ export default function CoursePage(props) {
             </Grid>
             </Grid>
           <Grid container spacing={10} className={classes.mainGrid}>
-       <Grid item xs={12} md={12} lg={12}>
+      <Hidden mdDown>
+         <Grid item xs={12} md={12} lg={12}>
             <img src={courseillus} alt="course"/> 
             </Grid>
-           
+        </Hidden>
+           <Hidden only='lg'>
+              <Grid item xs={12} md={12} lg={12}>
+            <img src={courseillus_small} alt="course"/> 
+            </Grid>
+             </Hidden>
               {modules.map((m, index) => (
                 <Grid item xs={12} lg={6} md={6}> 
                     <FeaturedPost key={m.title} mod={m} index={index} onClick={()=>handleModuleClick(m)}/>  

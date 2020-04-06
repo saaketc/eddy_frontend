@@ -14,6 +14,9 @@ import GreatIcon from '@material-ui/icons/SentimentSatisfiedAlt';
 import CheckBox from './../common/checkBox';
 import dataService from '../../services/dataServices';
 import feedbackillus from '../../illustrations/feedback.svg';
+import feedbackillus_small from '../../illustrations/feedback_small.svg';
+import  Hidden  from '@material-ui/core/Hidden';
+
 const color = '#ff6987';
 
 const useStyles = makeStyles(theme => ({
@@ -139,14 +142,27 @@ const ParentalEvaluation = (props) => {
     return (
         <Container>
               <Grid container spacing={4}>
-             <Grid item xs={12} sm={12} md={5} lg={5}>  
-             <img src={feedbackillus} alt='feedback' />
-              </Grid>
-
-               <Grid item xs={12} sm={12} md={7} lg={7}>
-            <Typography variant='h4' className={classes.heading}>
+             <Grid item xs={12} sm={12} md={6} lg={6}>  
+            <Hidden mdDown>
+                 <img src={feedbackillus} alt='feedback' />
+                </Hidden>
+                <Hidden lg='lg'>
+                 
+                <Typography variant='h4' className={classes.heading}>
                 Parental observational feedback
                 </Typography>
+               
+            <br/>
+                 <img src={feedbackillus_small} alt='feedback' />
+                </Hidden>
+              </Grid>
+
+               <Grid item xs={12} sm={12} md={6} lg={6}>
+           <Hidden mdDown>
+                <Typography variant='h4' className={classes.heading}>
+                Parental observational feedback
+                </Typography>
+               </Hidden>
             <br/>
             <Typography variant='h5'>
                 Select the appropriate options during your kid's activity

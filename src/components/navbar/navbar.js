@@ -133,17 +133,7 @@ const { onAuthClick, onGeneralClick, user } = props;
                         {/* <a href='/'>  <img src={logo} /></a> */}
             <a style={{textDecoration:'none', color:color}}href='/'>Eddy </a>   
           </Typography>
-          {
-            user &&
-            <div>
-              <Button color="inherit"
-                style={{ color: 'black' }}
-                onClick={() => onGeneralClick('practice')}>Playground</Button>
-              {/* <Button color="inherit"
-                style={{ color: 'black' }}
-                onClick={() => onGeneralClick('loopSpace')}>LoopSpace</Button> */}
-            </div>
-          }
+         
                    <div>
                       <Button color="inherit"
                       style={{ color:'black' }}

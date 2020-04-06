@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import label from '../../illustrations/label.png'
+import  Hidden  from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles(theme => ({
     mainFeaturedPost: {
@@ -54,7 +55,8 @@ export default function MainFeaturedPost(props) {
     return (
         <Paper className={classes.mainFeaturedPost}>
             <div className={classes.overlay} />
-            <Typography variant="h4" align='right'>
+          <Hidden mdDown>
+                <Typography variant="h4" align='right'>
                 {courseScore > 0  ? `Current grade: ${courseScore}%` : ''}
             </Typography>
             <Typography variant="h5" align='right'>
@@ -63,22 +65,51 @@ export default function MainFeaturedPost(props) {
                     `Never stop learning and having fun! Keep going`}
             </Typography>
             <br/>
-            <Typography align='right'>
+            <Typography align='right' variant='h3'>
                 <Button
                     disabled={enrolled}
                     className={classes.btn}
                     onClick={onEnrollClick}>{!enrolled ? 'Enroll now' : 'Thanks for enrolling!'}</Button>
             </Typography>
+              </Hidden>
             <Grid container>
                 <Grid item md={6}>
                     <div className={classes.mainFeaturedcourseContent}>
-                        <Typography component="h1" variant="h2" gutterBottom align='center'>
+                      <Hidden mdDown>
+                            <Typography component="h1" variant="h2" gutterBottom align='center'>
                             {course.title}
                         </Typography>
                         <Typography variant="h6"  paragraph align='center'>
                             {course.description}
                         </Typography>
-                        
+                          </Hidden>
+
+                           <Hidden only='lg'>
+                            <Typography component="h1" variant="h3" gutterBottom align='center'>
+                            {course.title}
+                        </Typography>
+                        <Typography variant="h7"  paragraph align='center'>
+                            {course.description}
+                        </Typography>
+                          </Hidden>
+
+                           <Hidden only='lg'>
+                <Typography variant="h5" align='right'>
+                {courseScore > 0  ? `Current grade: ${courseScore}%` : ''}
+            </Typography>
+            <Typography variant="h6" align='right'>
+                {(courseScore > 0 && courseScore >= 50) ? `Your kid is doing great! Keep learning`
+                    :
+                    `Never stop learning and having fun! Keep going`}
+            </Typography>
+            <br/>
+            <Typography align='right' variant='h6'>
+                <Button
+                    disabled={enrolled}
+                    className={classes.btn}
+                    onClick={onEnrollClick}>{!enrolled ? 'Enroll now' : 'Thanks for enrolling!'}</Button>
+            </Typography>
+              </Hidden>
                     </div>
                 </Grid>
             </Grid>

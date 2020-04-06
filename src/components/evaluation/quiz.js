@@ -10,6 +10,8 @@ import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import CheckBox from './../common/checkBox';
 import dataService from '../../services/dataServices';
 import quizillus from '../../illustrations/quiz.svg';
+import quizillus_small from '../../illustrations/quiz_small.svg';
+import  Hidden  from '@material-ui/core/Hidden';
 
 const color = '#ff6987';
 
@@ -112,14 +114,25 @@ const Quiz = (props) => {
     return (
         <Container>
            <Grid container spacing={4}>
-             <Grid item xs={12} sm={12} md={5} lg={5}>  
-             <img src={quizillus} alt='quiz' />
-              </Grid>
-
-               <Grid item xs={12} sm={12} md={7} lg={7}>
-            <Typography variant='h4' className={classes.heading}>
+             <Grid item xs={12} sm={12} md={6} lg={6}>  
+            <Hidden mdDown>
+                 <img src={quizillus} alt='quiz' />
+                </Hidden>
+                <Hidden only='lg'>
+                    <Typography variant='h4' className={classes.heading}>
                 Quiz for a better understanding
                 </Typography>
+                <br/>
+                 <img src={quizillus_small} alt='quiz' />
+                </Hidden>
+              </Grid>
+
+               <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Hidden mdDown>
+                <Typography variant='h4' className={classes.heading}>
+                Quiz for a better understanding
+                </Typography>
+                </Hidden>
             <form onSubmit={handleSubmit}>
             <List>
                 {
