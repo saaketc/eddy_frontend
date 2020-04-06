@@ -52,8 +52,11 @@ export default function UiModal(props) {
                         type="text"
                         name={inputName}
                         value={value}
-                        onChange={onChange}
+                            onChange={onChange}
+                            variant='outlined'
                         fullWidth
+                            multiline
+                            rowsMax='20'
                         />
                         {button2 && (
                             <Button type = "submit" style={style}>

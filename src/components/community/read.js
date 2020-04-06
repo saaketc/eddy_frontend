@@ -46,6 +46,8 @@ const ReadQuestion = (props) => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (answer === ''|| answer === ' ')
+            return toast.error('Answer cannot be empty!');
         let ques = { ...question };
         let ans = {
             ansUserId: props.user._id,
@@ -70,16 +72,7 @@ const ReadQuestion = (props) => {
 
 
     }
-    {/* <form onSubmit={handleSubmit}>
-                <textarea type="text"
-                    placeholder="Your answer here..."
-                    name='answer'
-                    value={answer}
-                    onChange={handleChange} >
-                </textarea><br />
-                <button>Answer</button>
-            </form> */}
-
+   
     return (
         <Container>
           

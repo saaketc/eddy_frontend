@@ -55,7 +55,8 @@ const Community = (props) => {
         e.preventDefault();
         let oldQuestions = [...questions];
         try {
-
+            if (userQuestion === '' || userQuestion === ' ')
+                return toast.error('Question cannot be empty!');
             const QuesData = {
                question: removeQuesMark(userQuestion),
                 // question: userQuestion,
@@ -80,22 +81,13 @@ const Community = (props) => {
             
         }
    }
-    {/* <h2 key={ques._id}>{`${ques.question}?`}</h2>
-                        <small>Answers {ques.answers.length}</small>
-                        <br/>
-                        {ques.answers.length > 0 ? <Link to={{ 
-                            pathname: `/community/${slug(ques.question)}`,
-                            state: ques
-                        }}>
-                        Read
-                        </Link> : null}   <button>Answer</button>
-                    */}
+
     return (
         <Container>
             <br/>
             <br />
-              <Typography gutterBottom variant="h2">
-                    {user ? 'Ask community' : 'Join the community!'}
+              <Typography gutterBottom variant="h3">
+                    {user ? 'Ask the community about anything related to kids!' : 'Join the community!'}
                 </Typography>
                 <div>
                     <UiModal

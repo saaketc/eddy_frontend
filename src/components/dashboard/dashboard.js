@@ -45,7 +45,7 @@ const Dashboard = (props) => {
                 setLoading(false);
             }
             catch (ex) {
-                return toast.error("Couldn't get courses!");
+                return toast.error("Something went wrong!");
             }
 
         }
