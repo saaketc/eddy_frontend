@@ -19,6 +19,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import logo from '../../illustrations/logo.png';
+import  Hidden  from '@material-ui/core/Hidden';
+
 import  './navbar.css';
 // const color = '#047b63';
 const color = '#ff6987';
@@ -128,11 +130,20 @@ const { onAuthClick, onGeneralClick, user } = props;
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h4" noWrap >
+         <Hidden mdDown>
+            <Typography className={classes.title} variant="h10" noWrap >
                       
-                        {/* <a href='/'>  <img src={logo} /></a> */}
-            <a style={{textDecoration:'none', color:color}}href='/'>Eddy </a>   
+                        <a href='/'>  <img src={logo} /></a>
+            {/* <a style={{textDecoration:'none', color:color}}href='/'>Eddy </a>    */}
           </Typography>
+           </Hidden>
+             <Hidden only='lg'>
+           
+                      
+                        <a href='/'>  <img src={logo} /></a>
+            {/* <a style={{textDecoration:'none', color:color}}href='/'>Eddy </a>    */}
+        
+           </Hidden>
          
                    <div>
                       <Button color="inherit"
