@@ -121,15 +121,7 @@ const { onAuthClick, onGeneralClick, user } = props;
           <AppBar position="static"
           style={{ backgroundColor:'white' }}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
+         
          <Hidden mdDown>
             <Typography className={classes.title} variant="h10" noWrap >
                       
@@ -185,7 +177,7 @@ const { onAuthClick, onGeneralClick, user } = props;
                       <Button color="inherit" 
                 onClick={() => onAuthClick('signup')}
                 className={classes.btn}
-              >For parents
+              >Parents
               </Button>
                   </div>
                   </>

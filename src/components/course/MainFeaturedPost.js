@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
-import label from '../../illustrations/label.png'
 import  Hidden  from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles(theme => ({

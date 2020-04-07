@@ -49,7 +49,7 @@ const Signup = (props) => {
                 onSubmit={handleSubmit}
                 onChange={handleChange}
                 data={user}
-                heading='Signup'
+                heading='Parents signup here!'
                 pass={true}
                 signup={true}
                 label='Signup'

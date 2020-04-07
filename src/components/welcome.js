@@ -73,7 +73,7 @@ const Welcome = (props) => {
            </Typography>
           </Hidden>
 
-          <Typography variant='h6' style={{ fontWeight: '600' }}>
+          <Typography variant='h6' style={{ fontWeight: '500' }}>
             <br />
           Enroll now for classes 6 to 8.
          </Typography>
