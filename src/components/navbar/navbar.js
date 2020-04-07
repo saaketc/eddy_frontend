@@ -7,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -122,18 +121,16 @@ const { onAuthClick, onGeneralClick, user } = props;
           style={{ backgroundColor:'white' }}>
         <Toolbar>
          
-         <Hidden mdDown>
+         <Hidden only={['sm', 'xs']}>
             <Typography className={classes.title} variant="h10" noWrap >
                       
                         <a href='/'>  <img src={logo} /></a>
-            {/* <a style={{textDecoration:'none', color:color}}href='/'>Eddy </a>    */}
           </Typography>
            </Hidden>
-             <Hidden only='lg'>
+          <Hidden only={['md', 'lg']}>
            
                       
                         <a href='/'>  <img src={logo} /></a>
-            {/* <a style={{textDecoration:'none', color:color}}href='/'>Eddy </a>    */}
         
            </Hidden>
          
@@ -166,20 +163,22 @@ const { onAuthClick, onGeneralClick, user } = props;
                   {!user &&
                   <>
                   <div>
-                      <Button color="inherit"
+                      <Button 
                 style={{ color: 'black' }}
                 onClick={() => onAuthClick('login')}
                 className={classes.hover}
               >Login
               </Button>
                   </div>
+                 <Hidden only='xs'>
                   <div>
-                      <Button color="inherit" 
+                      <Button  
                 onClick={() => onAuthClick('signup')}
                 className={classes.btn}
-              >Parents
+              >For Parents
               </Button>
                   </div>
+                 </Hidden>
                   </>
                   }
                   { user &&

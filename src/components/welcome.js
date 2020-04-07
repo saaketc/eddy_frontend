@@ -26,7 +26,11 @@ const useStyles = makeStyles(theme => ({
   btn: {
     border: `2 px solid ${color}`,
     backgroundColor: color,
+    fontFamily: 'Roboto',
+    fontWeight:'600',
+    fontSize: '18px',
     color: 'white',
+    padding: '15px',
     '&:hover': {
       backgroundColor:color
     }
@@ -77,15 +81,17 @@ const Welcome = (props) => {
             <br />
           Enroll now for classes 6 to 8.
          </Typography>
-          <br/>
+          <br />
+          
           <Button
             type="submit" 
             variant="contained"
             onClick={handleClick}
             className={classes.btn}
           >
-            Get started
+              Parents get started
           </Button>
+           
         </Grid>
        
       </Grid>
