@@ -23,28 +23,30 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '500'
     }
 }))
+const color = '#ff6987';
 
 const Dashboard = (props) => {
   
-    // const imageURL = 'http://localhost:5000/courseImages/';
-    const imageURL = 'https://eddy-app.herokuapp.com/courseImages/';
+    const imageURL = 'http://localhost:5000/courseImages/';
+    // const imageURL = 'https://eddy-app.herokuapp.com/courseImages/';
     // const imageURL = 'http://api.tremollo.co:5000/courseImages/';
     const { user, history } = props;
-    const [courses, setCourses] = useState([]);
+    // const [courses, setCourses] = useState([]);
+    const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const classes = useStyles();
-    const handleClick = (course) => {
-        return history.push(`/courses/${slug(course.title)}`, course);
+    const handleClick = (activity) => {
+        return history.push(`/activities/${slug(activity.title)}`, activity);
         
         
     }
    
     useEffect(() => {
-        async function fetchcourses(resource) {
+        async function fetchActivities(resource) {
             try {
                 const { data } = await dataServices.fetchAll(resource);
-                setCourses(data);
+                setActivities(data);
                 setLoading(false);
             }
             catch (ex) {
@@ -52,7 +54,7 @@ const Dashboard = (props) => {
             }
 
         }
-        fetchcourses('course');
+        fetchActivities('activity');
 
     }, []);
     return (
@@ -65,7 +67,7 @@ const Dashboard = (props) => {
                 </Typography>
                 <br/>
                 <Typography gutterBottom variant="h4">
-                Pick these awesome courses and make your kid stand out in the crowd!
+                Pick these awesome activities and make your kid stand out in the crowd!
                 </Typography>
             <br />
             <Grid container spacing={6}>
@@ -89,7 +91,7 @@ const Dashboard = (props) => {
             <br/>
             <br/>
              <Typography gutterBottom variant="h3" className={classes.heading}>
-                Curated courses for your kid
+                Curated activities for your kid
                 </Typography>
                 <br/>
                 <br/>
@@ -97,17 +99,18 @@ const Dashboard = (props) => {
                 
                 <Grid container spacing={6}>
                     {
-                        courses.map(course => (
+                        activities.map(activity => (
                   
                         
                            
                             <Grid item lg={4}>
                                 <UiCard
-                                    image={imageURL + course.image}
-                                    data={course}
+                                    image={imageURL + activity.image}
+                                    data={activity}
                                     property='title'
-                                    content={course.description}
-                                    mediaHeight={true}
+                                    content={activity.description}
+                                    color={color }
+                                   // mediaHeight={true}
                                     onClick={handleClick}
                                     buttonLabel1='Go learn'
                                 />

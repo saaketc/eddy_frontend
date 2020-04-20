@@ -7,6 +7,7 @@ import './index.css';
 import Welcome from './components/welcome';
 import CoursePage from './components/course/CoursePage';
 import ModulePage from './components/course/ModulePage';
+import ActivityPage from './components/course/activity';
 import Signup from './components/auth/signup';
 import Login from './components/auth/login';
 import Logout from './components/auth/logout';
@@ -79,6 +80,7 @@ const App = (props) => {
      
       <Switch>
           <Route path='/modules/:title' render={props => <ModulePage {...props} user={user} />}/>
+        <Route path='/activities/:title' component={ActivityPage} />
           <Route path='/courses/:title' component={CoursePage} />
           <Route path='/profile' render={props => <Profile {...props} user={user} />}/>
           <Route path='/auth/signup' component={Signup} />

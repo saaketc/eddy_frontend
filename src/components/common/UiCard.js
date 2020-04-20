@@ -18,6 +18,9 @@ const useStyles = makeStyles({
     media: {
         height: 140,
     },
+    heading: {
+        fontSize: '25px'
+    }
 });
 
 export default function UiCard(props) {
@@ -27,7 +30,7 @@ export default function UiCard(props) {
     
     const classes = useStyles();
    
-    const { image, content, secondaryContent, data, property, mediaHeight, buttonLabel1, buttonLabel2, onClick } = props;
+    const { image, content, secondaryContent, data, property, mediaHeight, buttonLabel1, buttonLabel2, onClick, color } = props;
     return (
         <Card className={classes.card}
            
@@ -40,7 +43,7 @@ export default function UiCard(props) {
                     title={data[property]}
                 />
                 <CardContent >
-                    <Typography gutterBottom variant="h6" component="h2">
+                    <Typography gutterBottom variant="h6" component="h2" className={classes.heading} style={{ color: color }}>
                         {data[property]}
           </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">

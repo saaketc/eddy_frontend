@@ -27,19 +27,21 @@ const Profile = (props) => {
 
     const classes = useStyles();
 
-    const { user, history } = props;
+    // const { user, history } = props;
 
     const [loading, setLoading] = useState(true);
-    const [updatedUser, setUpdatedUser] = useState(user);
-    const [enrolledCourses, setEnrolledCourses] = useState([]);
+    const [updatedUser, setUpdatedUser] = useState({});
+    // const [enrolledCourses, setEnrolledCourses] = useState([]);
    
     useEffect(() => {
         async function fetchUser(){
           try{
-            const { data } = await dataService.fetchOne('users/profile');
-            setUpdatedUser(data.user);
-            setEnrolledCourses(data.enrolled);
-            setLoading(false);
+            const { data: userData } = await dataService.fetchOne('users/profile');
+              
+              setUpdatedUser(userData);
+            // setEnrolledCourses(data.enrolled);
+              setLoading(false);
+              
           }
           catch(e){
               console.log('Could not get profile!');
@@ -51,9 +53,9 @@ const Profile = (props) => {
        
     }, [])
   
-    const handleClick = (course) => {
-        return history.push(`/courses/${slug(course.title)}`, course);
-      }
+    // const handleClick = (course) => {
+    //     return history.push(`/courses/${slug(course.title)}`, course);
+    //   }
    
     const handleChange = ({ currentTarget: input }) => {
         const newUser = { ...updatedUser };
@@ -97,59 +99,12 @@ const Profile = (props) => {
                 noLabel={true}
                 label='Update'
                 
-                />
-                <br/>
-            {enrolledCourses.length > 0 ?
-             <Typography variant="h4"  align='center'>
-                {`Enrolled courses for your kid, ${updatedUser.firstName}`}
-                        </Typography> 
-                :
-                <>
-                 <Typography variant="h4"  align='center'>
-                        {`Hey ${updatedUser.firstName}, your enrolled courses will live here`}
-                        </Typography> 
-                        <br/>
-                         <Typography align='center'>
-                        <Button variant='outlined' 
-                        className={classes.btn}
-                        onClick={()=> history.push('/')}>Suggested courses</Button>
-                        </Typography> 
-
+                        />
                         </>
-                        }
-          
-                        <br/>
-          <Grid container spacing={6}>
-              
-                    {
-                        enrolledCourses.map(course => (
-                  
-                        
-                           
-                            <Grid item lg={4}>
-                                <UiCard
-                                    image={imageURL + course.image}
-                                    data={course}
-                                    property='title'
-                                    content={course.description}
-                                    mediaHeight={true}
-                                    onClick={handleClick}
-                                    buttonLabel1='Go learn'
-                                />
-                            </Grid>
-                   
-                       
-                    
-
-                    
-                        ))
-            
-                    }
-                </Grid>
-                </>
             )
             }
-        </Container>
+                    </Container>
+            
     )
 }
 

@@ -36,14 +36,16 @@ const useStyles = makeStyles(theme => ({
 const Activity = (props) => {
   const classes = useStyles();
 
-  const { activity, activityIndex } = props;
+  // const { activity, activityIndex } = props;
+  const { state: activity } = props.location;
   const { instructions, story, parts } = activity.content;
   return (
     <Container maxWidth='lg'>
       <Grid container spacing={4}>
        <Hidden mdDown>
           <Grid item xs={12} sm={12} md={6} lg={6}>
-          <img src={activityIndex === 0 ? exercise : musicbird} alt="activity" />
+          {/* <img src={activityIndex === 0 ? exercise : musicbird} alt="activity" /> */}
+          <img src={musicbird} alt="activity" />
         </Grid>
          </Hidden>
       <Hidden only='lg'>
@@ -55,7 +57,8 @@ const Activity = (props) => {
           <br/>
           <br/>
           </Hidden>
-          <img src={activityIndex === 0 ? exercise_small : musicbird_small} alt="activity" />
+          {/* <img src={activityIndex === 0 ? exercise_small : musicbird_small} alt="activity" /> */}
+          <img src={musicbird_small} alt="activity" />
         </Grid>
          </Hidden>
 
